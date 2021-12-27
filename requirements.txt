@@ -3,6 +3,7 @@ requests
 torch
 spacy
 transformers
+en_core_web_trf
 requests
 networkx
 matplotlib
