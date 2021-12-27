@@ -1,11 +1,19 @@
 import streamlit as st 
 import spacy
 import pandas as pd 
-
+from PIL import Image
 
 st.title('BBC News Scraper')
 
 st.header("Climate Section")
+
+# with st.spinner('Loading and compiling ViT-GPT2 model ...'):
+
+#     from model import *
+
+st.sidebar.markdown("""
+A tool to help you analyze the news articles in seconds and deliver you the best insights.
+	""")
 
 data_btn = st.button("Fetch Latest Data", )
 
@@ -83,6 +91,14 @@ if mode == "Simple":
 	elif option == "Image Analysis":
 
 		st.write("Under Making!")
+
+		with st.spinner("Generating image caption..."):
+
+			image = Image.open('data/How-to-Develop-a-Deep-Learning-Caption-Generation-Model-in-Python-from-Scratch.jpg')
+			caption = "There are two dogs roaming the deserts."
+			
+			st.image(image, caption = caption)
+			#st.write(caption)
 
 	elif option == "Knowledge Graph":
 
