@@ -115,7 +115,7 @@ if mode == "Simple":
 		st.subheader("Summary")
 		st.write(summary.summarize())
 
-	#st.download_button("Download Analysis!", data = 'data/sample_analysis_report.pdf', name = 'sample_analysis_report.pdf')
+	st.download_button("Download Analysis!", data = 'data/sample_analysis_report.pdf', name = 'sample_analysis_report.pdf', mime = 'application/octet-stream')
 else:
 
 	st.write("Under Making!")
