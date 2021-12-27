@@ -6,3 +6,4 @@ requests-unixsocket==0.2.0
 SecretStorage==2.3.1
 spacy
 transformers
+tensorflow==2.4.1
