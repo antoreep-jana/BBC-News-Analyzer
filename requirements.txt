@@ -3,7 +3,7 @@ requests
 torch
 spacy
 transformers
-en_core_web_trf
+en_core_web_trf @ https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.0.0a0/en_core_web_trf-3.0.0a0.tar.gz
 requests
 networkx
 matplotlib
