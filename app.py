@@ -7,6 +7,8 @@ st.title('BBC News Scraper')
 
 st.header("Climate Section")
 
+data_btn = st.button("Fetch Latest Data", )
+
 mode = st.radio("Mode", ['Simple', 'Advanced'])
 
 if mode == "Simple":
@@ -112,6 +114,8 @@ if mode == "Simple":
 		#summWords = "This is the abstract!"
 		st.subheader("Summary")
 		st.write(summary.summarize())
+
+	st.download_button("Download Analysis!", data = 'data/sample_analysis_report.pdf', name = 'sample_analysis_report.pdf')
 else:
 
 	st.write("Under Making!")
