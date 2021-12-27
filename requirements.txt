@@ -4,7 +4,7 @@ requests==2.22.0
 tensorflow==2.4.1
 spacy
 transformers
-re
+requests
 networkx
 matplotlib
 pandas
