@@ -114,8 +114,14 @@ if mode == "Simple":
 		#summWords = "This is the abstract!"
 		st.subheader("Summary")
 		st.write(summary.summarize())
-
+	st.text("")
+	st.text("")
 	st.download_button("Download Analysis Report!", data = 'data/sample_analysis_report.pdf', file_name = 'sample_analysis_report.pdf', mime = 'application/octet-stream')
 else:
 
 	st.write("Under Making!")
+
+st.markdown("***")
+st.write("**Developer**: Antoreep Jana")
+st.write("**Mail**: antoreepjana@gmail.com")
+st.write("Code at my GitHub repo [BBC News Analyzer](https://github.com/antoreep-jana/BBC-News-Analyzer.git)")
