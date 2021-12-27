@@ -1,9 +1,10 @@
 beautifulsoup4==4.8.2
 lxml==4.5.0
-Pillow==7.0.0
 requests==2.22.0
-requests-unixsocket==0.2.0
-SecretStorage==2.3.1
+tensorflow==2.4.1
 spacy
 transformers
-tensorflow==2.4.1
+re
+networkx
+matplotlib
+pandas
