@@ -1,6 +1,8 @@
 from transformers import pipeline 
 from transformers import BertForSequenceClassification, BertTokenizer
 import torch
+
+
 #sentiment_analysis = pipeline('sentiment-analysis')
 #print(sentiment_analysis('I love this'))
 
@@ -23,9 +25,11 @@ class Sentiment:
 
         
 
-
-
     def predict(self):
+
+        return "Positive", 0.99
+
+    def predict1(self):
 
         chunksize = 512
 
