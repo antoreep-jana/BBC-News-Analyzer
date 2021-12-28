@@ -4,4 +4,4 @@ An extensive UI tool built using new data scraped from BBC News. Deployed on str
 Run it on Streamlit [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/antoreep-jana/bbc-news-analyzer/main/app.py)
 
 
-#### Explaining the Functionality
+#### The Functionality

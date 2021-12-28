@@ -9,8 +9,11 @@ class ImageCaption:
 
 	def __init__(self, img):
 
-		pass 
+		self.img = img 
 
+	def get_model(self):
+
+		pass 
 	def predict(self):
 
 		pass
