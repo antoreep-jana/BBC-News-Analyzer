@@ -95,9 +95,17 @@ if mode == "Simple":
 		with st.spinner("Generating image caption..."):
 
 			image = Image.open('data/How-to-Develop-a-Deep-Learning-Caption-Generation-Model-in-Python-from-Scratch.jpg')
-			caption = "There are two dogs roaming the deserts."
 			
+			text_image_radio = st.radio('Text Generator', ['Alt text', "Image Caption Model"])
+			
+			if text_image_radio == 'Alt text':
+				caption = 'This is Alt Text caption. The one provided in the BBC articles.'
+			else:
+				caption = "There are two dogs roaming the deserts."
+
 			st.image(image, caption = caption)
+				
+			
 			#st.write(caption)
 
 	elif option == "Knowledge Graph":
@@ -135,7 +143,7 @@ if mode == "Simple":
 	st.download_button("Download Analysis Report!", data = 'data/sample_analysis_report.pdf', file_name = 'sample_analysis_report.pdf', mime = 'application/octet-stream')
 else:
 
-	st.write("Under Making!")
+	st.write("Advanced Section Under Making!")
 
 st.markdown("***")
 st.write("**Developer**: Antoreep Jana")
