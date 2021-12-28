@@ -14,7 +14,7 @@ import spacy
 
 class NER:
     def __init__(self, txt):
-        nlp = spacy.load('en_core_web_trf')
+        nlp = spacy.load('en_core_web_sm')
         self.entities = []
         self.entityLabels = []
 
