@@ -75,14 +75,12 @@ if mode == "Simple":
 
 	elif option == "Entity Extraction":
 
-		#text = "This is an Apple watch. Costed about $100 on 21st June, 2022."
-		text = """
-		This sentence has 10 words and we are testing it.
-		"""		
+		text_ent = "This is an Apple watch. Costed about $100 on 21st June, 2022."
+				
 
 		from named_entity_recognizer import NER 
 
-		ents = NER(text)
+		ents = NER(text_ent)
 
 		entOrg, entCardinal, entPerson, entDate, entGPE = ents.get_entities()
 
