@@ -80,7 +80,7 @@ if mode == "Simple":
 
 		from named_entity_recognizer import NER 
 
-		ents = NER(text_ent)
+		ents = NER(text)
 
 		entOrg, entCardinal, entPerson, entDate, entGPE = ents.get_entities()
 
