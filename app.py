@@ -31,8 +31,8 @@ if mode == "Simple":
 	news_articles = st.selectbox('News Article', list(df.Title))
 
 	#print(df[df['Title'] == news_articles]['Body'][0])
-	text_lst = df[df['Title'] == news_articles]['Body'][0]
-
+	#print(df[df['Title'] == news_articles]['Body'])
+	text_lst = df[df['Title'] == news_articles]['Body']
 	text = ""
 	for txt in text_lst:
 		text += txt 
