@@ -75,7 +75,7 @@ if mode == "Simple":
 
 	elif option == "Entity Extraction":
 
-		text_ent = "This is an Apple watch. Costed about $100 on 21st June, 2022."
+		#text_ent = "This is an Apple watch. Costed about $100 on 21st June, 2022."
 				
 
 		from named_entity_recognizer import NER 

@@ -14,7 +14,11 @@ import spacy
 
 class NER:
     def __init__(self, txt):
-        nlp = spacy.load('en_core_web_sm')
+        #nlp = spacy.load('en_core_web_sm')
+        #nlp = spacy.load('en_core_web_md')
+        nlp = spacy.load('en_core_web_lg')
+        #nlp = spacy.load('en_core_web_trf')
+
         self.entities = []
         self.entityLabels = []
 
