@@ -6,7 +6,7 @@ import numpy as np
 import torch 
 from io import BytesIO
 import requests
-
+import re
 
 
 st.title('BBC News Scraper')
@@ -66,6 +66,7 @@ if mode == "Simple":
 	for txt in text_lst:
 		text += txt 
 
+	text = text.replace("[", "").replace("]", "").replace("'",'').replace(", ","")
 	st.subheader("Select Operation")
 	option = st.selectbox('NLP Service', ('Sentiment Analysis', 'Entity Extraction', 'Text Summarization', 'Knowledge Graph', 'Image Analysis'))
 
@@ -115,11 +116,11 @@ if mode == "Simple":
 
 		filter_ent = st.selectbox("Choose entity type : ", ['Organization Entities', 'Cardinal Entities', 'Personal Entities', 'Date Entities', 'GPE Entities'])
 
+		#print(text)
 		if filter_ent == "Organization Entities":
 			#st.write("Organization Entities : " + str(entOrg))
 			selection = st.radio("Organization Entities", entOrg)
-
-			
+	
 		elif filter_ent == "Cardinal Entities":
 			#st.write("Cardinal Entities : " + str(entCardinal))
 			selection = st.radio("Cardinal Entities", entCardinal)
@@ -132,7 +133,15 @@ if mode == "Simple":
 		elif filter_ent == "GPE Entities":
 			#st.write("GPE Entities: " + str(entGPE))
 			selection = st.radio("GPE Entities", entGPE)
-		st.write('Excerpts quoting"', selection, '" coming soon' )
+		#st.write('Excerpts quoting"', selection, '" coming soon' )
+
+		excerpt = re.findall(r"([^.]*?" + re.escape(selection) + r"[^.]*\.)", text)
+
+		excerpt = "".join(excerpt)
+		#print(excerpt)
+
+		#st.markdown("####Excerpts quoting ", selection)
+		st.markdown(excerpt.replace(selection, "**" + selection + "**"))
 
 	elif option == "Image Analysis":
 
