@@ -101,16 +101,26 @@ if mode == "Simple":
 
 		st.write("Under Making!")
 
+		from image_captioner import ImageCaption
+
+
+
 		with st.spinner("Generating image caption..."):
 
-			image = Image.open('data/How-to-Develop-a-Deep-Learning-Caption-Generation-Model-in-Python-from-Scratch.jpg')
+
+
+			captioner = ImageCaption('data/img.jpg')
+
+			caption = captioner.predict()
+
+			image = Image.open('data/img.jpg')
 			
 			text_image_radio = st.radio('Text Generator', ['Alt text', "Image Caption Model"])
 			
-			if text_image_radio == 'Alt text':
-				caption = 'This is Alt Text caption. The one provided in the BBC articles.'
-			else:
-				caption = "There are two dogs roaming the deserts."
+			#if text_image_radio == 'Alt text':
+			#	caption = 'This is Alt Text caption. The one provided in the BBC articles.'
+			#else:
+			#	caption = "There are two dogs roaming the deserts."
 
 			st.image(image, caption = caption)
 				

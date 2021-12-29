@@ -66,12 +66,12 @@ class BBC:
 parsed = BBC("https://www.bbc.co.uk/news/world-europe-49345912") 
 
 #print(parsed.title)
-print(parsed.link)
-print(parsed.author)
-print(parsed.date)
-print(parsed.title)
-print(parsed.body)
-print(parsed.images)
+#print(parsed.link)
+#print(parsed.author)
+#print(parsed.date)
+#print(parsed.title)
+#print(parsed.body)
+#print(parsed.images)
 #print(parsed.body)
 		
 
