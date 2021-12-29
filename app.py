@@ -38,7 +38,7 @@ date_filter = col2.selectbox("Filter by Date", ['None'] + dates)
 
 
 if date_filter != "None":
-	print("Here")
+	#print("Here")
 
 	for date in dates_original:
 		if date_filter in date:
