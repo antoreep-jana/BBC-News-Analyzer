@@ -2,6 +2,8 @@ import streamlit as st
 import spacy
 import pandas as pd 
 from PIL import Image
+import numpy as np 
+import torch 
 
 st.title('BBC News Scraper')
 
