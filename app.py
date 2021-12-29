@@ -116,15 +116,23 @@ if mode == "Simple":
 		filter_ent = st.selectbox("Choose entity type : ", ['Organization Entities', 'Cardinal Entities', 'Personal Entities', 'Date Entities', 'GPE Entities'])
 
 		if filter_ent == "Organization Entities":
-			st.write("Organization Entities : " + str(entOrg))
+			#st.write("Organization Entities : " + str(entOrg))
+			selection = st.radio("Organization Entities", entOrg)
+
+			
 		elif filter_ent == "Cardinal Entities":
-			st.write("Cardinal Entities : " + str(entCardinal))
+			#st.write("Cardinal Entities : " + str(entCardinal))
+			selection = st.radio("Cardinal Entities", entCardinal)
 		elif filter_ent == "Personal Entities":
-			st.write("Personal Entities : " + str(entPerson))
+			#st.write("Personal Entities : " + str(entPerson))
+			selection = st.radio("Personal Entities", entPerson)
 		elif filter_ent == "Date Entities":
-			st.write("Date Entities : " + str(entDate))
+			#st.write("Date Entities : " + str(entDate))
+			selection = st.radio("Date Entities", entDate)
 		elif filter_ent == "GPE Entities":
-			st.write("GPE Entities: " + str(entGPE))
+			#st.write("GPE Entities: " + str(entGPE))
+			selection = st.radio("GPE Entities", entGPE)
+		st.write('Excerpts quoting"', selection, '" coming soon' )
 
 	elif option == "Image Analysis":
 
