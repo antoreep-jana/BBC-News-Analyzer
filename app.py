@@ -117,13 +117,12 @@ if mode == "Simple":
 		imgs = list(imgs)[0].replace("[", "").replace("]", "").replace("'","").split(", ")
 
 		imgs = [i for i in imgs if i not in bad_img_urls]		
-		print(imgs)
+		#print(imgs)
 		with st.spinner("Generating image caption..."):
 
 			image = Image.open('data/img.jpg')
 			
 
-			st.image(imgs, use_column_width = True)
 			#ncols = len(imgs)
 			#cols = st.columns(ncols)
 			#print(ncols)
@@ -151,6 +150,10 @@ if mode == "Simple":
 			else:
 				captioner = ImageCaption('data/img.jpg')
 				caption = captioner.predict()
+
+			captions = ['caption_' + str(i + 1) for i in range(len(imgs))]
+			st.image(imgs,caption = captions, use_column_width = True)
+			
 
 			#st.image(image, caption = caption)
 				
