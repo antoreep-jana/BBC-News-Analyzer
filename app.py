@@ -66,7 +66,7 @@ if mode == "Simple":
 	for txt in text_lst:
 		text += txt 
 
-	text = text.replace("[", "").replace("]", "").replace("'",'').replace(", ","")
+	text = text.replace("[", "").replace("]", "").replace("'",'')
 	st.subheader("Select Operation")
 	option = st.selectbox('NLP Service', ('Sentiment Analysis', 'Entity Extraction', 'Text Summarization', 'Knowledge Graph', 'Image Analysis'))
 
