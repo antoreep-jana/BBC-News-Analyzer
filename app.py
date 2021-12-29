@@ -31,9 +31,20 @@ data_btn = col1.button("Fetch Latest Data")
 col2 = cols[1]
 
 #print(['<select>']+ ['a']))
-dates = list(df['Date'])
-dates = [i[0:10] for i in dates]
-date_filter = col2.selectbox("Filter by Date (under making)", ['None'] + dates)
+dates_original = list(df['Date'])
+#print(dates_ori)
+dates = [i[0:10] for i in dates_original]
+date_filter = col2.selectbox("Filter by Date", ['None'] + dates)
+
+
+if date_filter != "None":
+	print("Here")
+
+	for date in dates_original:
+		if date_filter in date:
+			df = df[df['Date'] == date]
+			#print(df)
+
 
 if data_btn:
 	pass
