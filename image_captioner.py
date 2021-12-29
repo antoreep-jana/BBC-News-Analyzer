@@ -7,6 +7,7 @@ from tqdm import tqdm
 import os 
 import subprocess
 import urllib3
+import torch
 from torchvision import transforms
 
 class Sampler:
