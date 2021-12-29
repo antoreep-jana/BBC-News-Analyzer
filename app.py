@@ -92,11 +92,11 @@ if mode == "Simple":
 		from sentiment_analyzer import Sentiment
 
 		#text = "This is an Apple watch. Great Investment. Costed about $100 on 21st June, 2022."
+		with st.spinner("Calculating Sentiment..."):
+			sentiment = Sentiment(text)
 
-		sentiment = Sentiment(text)
-
-		st.write("Sentiment :" ,  sentiment.predict()[0])
-		st.write("Confidence :",  sentiment.predict()[1])
+			st.write("Sentiment :" ,  sentiment.predict()[0])
+			st.write("Confidence :",  sentiment.predict()[1])
 
 
 		#sents = sent_tokenize(text)
@@ -225,11 +225,11 @@ if mode == "Simple":
 	# Investigation Division. Seven of the men are from so-called "red-flagged" countries, including Egypt, Turkey, Georgia, Pakistan and Mali.
 	# Her eighth husband, Rashid Rajput, was deported in 2006 to his native Pakistan after an investigation by the Joint Terrorism Task Force.
 	# If convicted, Barrientos faces up to four years in prison.  Her next court appearance is scheduled for May 18.
-		
-		summary = Summarizer(text)
-		#summWords = "This is the abstract!"
-		st.subheader("Summary")
-		st.write(summary.summarize().replace("<pad>", "").replace("</s>","").replace("<extra_id_0>", ""))
+		with st.spinner("Generating summary..."):
+			summary = Summarizer(text)
+			#summWords = "This is the abstract!"
+			st.subheader("Summary")
+			st.write(summary.summarize().replace("<pad>", "").replace("</s>","").replace("<extra_id_0>", ""))
 	st.text("")
 	st.text("")
 	st.download_button("Download Analysis Report!", data = 'data/sample_analysis_report.pdf', file_name = 'sample_analysis_report.pdf', mime = 'application/octet-stream')
