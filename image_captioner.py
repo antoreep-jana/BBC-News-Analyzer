@@ -7,16 +7,42 @@ from tqdm import tqdm
 import os 
 import subprocess
 import urllib3
+from torchvision import transforms
+
+class Sampler:
+
+	def __init__(self):
+
+		pass 
+
+	def load_img(self):
+		pass 
 
 
+class VocabBuilder:
+	def __init__(self):
 
+		pass 
+
+class Model:
+
+	def __init__(self):
+
+		pass 
+
+class Resize:
+
+	def __init__(self):
+
+		pass 
 
 
 class ImageCaption:
 
 	def __init__(self, img):
 
-		
+		self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
 		#download the models data
 		self.get_models()
 
@@ -78,12 +104,8 @@ class ImageCaption:
 		#return "A sentence"
 		#return predict_main(self.img)
 
-		output = subprocess.Popen(["python","image_captioning/sample.py","--image", "data/img.jpg"], stdout = subprocess.PIPE)
+		#output = subprocess.Popen(["python","image_captioning/sample.py","--image", "data/img.jpg"], stdout = subprocess.PIPE)
 
 		#os.system('python image_captioning/sample.py --image data/img.jpg')
-		return output.communicate()[0].decode('utf-8').replace('<start>', "").replace('<end>', '')
-
-
-#IC = ImageCaption('data/img.jpg')
-
-#IC.predict()
+		#return output.communicate()[0].decode('utf-8').replace('<start>', "").replace('<end>', '')
+		return "Image Captioning model in progress"
