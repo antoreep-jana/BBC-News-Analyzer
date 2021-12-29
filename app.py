@@ -21,7 +21,15 @@ st.sidebar.markdown("""
 A tool to help you analyze the news articles in seconds and deliver you the best insights.
 	""")
 
-data_btn = st.button("Fetch Latest Data")
+df = pd.read_csv('data/extracted_data.csv')
+
+cols = st.columns(2)
+
+col1 = cols[0]
+data_btn = col1.button("Fetch Latest Data")
+
+col2 = cols[1]
+date_filter = col2.selectbox("Filter by Date (under making)", list(df['Date']))
 
 if data_btn:
 	pass
@@ -32,7 +40,7 @@ if mode == "Simple":
 
 	st.subheader("Please select a news article")
 
-	df = pd.read_csv('data/extracted_data.csv')
+	
 	#print(df.Title)
 	news_articles = st.selectbox('News Article', list(df.Title))
 
