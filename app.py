@@ -229,7 +229,7 @@ if mode == "Simple":
 		summary = Summarizer(text)
 		#summWords = "This is the abstract!"
 		st.subheader("Summary")
-		st.write(summary.summarize().replace("<pad>", "").replace("</s>",""))
+		st.write(summary.summarize().replace("<pad>", "").replace("</s>","").replace("<extra_id_0>", ""))
 	st.text("")
 	st.text("")
 	st.download_button("Download Analysis Report!", data = 'data/sample_analysis_report.pdf', file_name = 'sample_analysis_report.pdf', mime = 'application/octet-stream')
