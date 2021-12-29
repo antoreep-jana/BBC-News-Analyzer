@@ -5,6 +5,7 @@ from tqdm import tqdm
 #from tensorflow.keras.preprocessing.text import Tokenizer   
 #from tensorflow.keras.preprocessing.sequence import pad_sequences
 import os 
+import subprocess
 import urllib3
 
 
@@ -39,8 +40,8 @@ class ImageCaption:
 		
 		#r = requests.get(vocab_file, allow_redirects = True)
 		#open('image_captioning/data/vocab.pkl').write(r.content)
-		if not os.path.isfile('image_captioning/data/vocab.pkl'):
 		
+		if not os.path.isfile('image_captioning/data/vocab.pkl'):		
 			self.download(vocab_file, 'image_captioning/data/vocab.pkl')
 
 	def get_models(self):
@@ -53,6 +54,8 @@ class ImageCaption:
 		#decoder_file = urllib3.urlopen(url_decoder)
 		#with open('image_captioning/models/decoder-5-3000.pkl') as output:
 		#	output.write(decoder_file.read())
+		
+
 		if not os.path.isfile('image_captioning/models/decoder-5-3000.pkl'):
 			self.download(url_decoder, 'image_captioning/models/decoder-5-3000.pkl')
 
@@ -63,6 +66,7 @@ class ImageCaption:
 		url_encoder = "https://www.dl.dropboxusercontent.com/s/g8t2oaxiincu48w/encoder-5-3000.pkl?dl=0"
 		#r = requests.get(url_encoder, allow_redirects = True)
 		#open('image_captioning/models/encoder-5-3000.pkl').write(r.content)
+		
 		if not os.path.isfile('image_captioning/models/encoder-5-3000.pkl'):
 			self.download(url_encoder, 'image_captioning/models/encoder-5-3000.pkl')
 
@@ -70,9 +74,14 @@ class ImageCaption:
 	def predict(self):
 
 
+		#from image_captioning.sample import predict_main 
+		#return "A sentence"
+		#return predict_main(self.img)
 
-		return "A sentence"
+		output = subprocess.Popen(["python","image_captioning/sample.py","--image", "data/img.jpg"], stdout = subprocess.PIPE)
+
 		#os.system('python image_captioning/sample.py --image data/img.jpg')
+		return output.communicate()[0].decode('utf-8').replace('<start>', "").replace('<end>', '')
 
 
 #IC = ImageCaption('data/img.jpg')

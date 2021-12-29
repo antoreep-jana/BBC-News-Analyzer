@@ -13,17 +13,6 @@ from PIL import Image
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-
-class ImageCaptioner:
-
-    def __init__(self, img):
-
-        
-        
-        pass 
-
-    def 
-
 def load_image(image_path, transform=None):
     image = Image.open(image_path).convert('RGB')
     image = image.resize([224, 224], Image.LANCZOS)
@@ -73,22 +62,20 @@ def main(args):
     sentence = ' '.join(sampled_caption)
     
     # Print out the image and the generated caption
-    return sentence
+    print (sentence)
     #image = Image.open(args.image)
     #plt.imshow(np.asarray(image))
     
-#if __name__ == '__main__':
-    #parser = argparse.ArgumentParser()
-    #parser.add_argument('--image', type=str, required=True, help='input image for generating caption')
-    #parser.add_argument('--encoder_path', type=str, default='image_captioning/models/encoder-5-3000.pkl', help='path for trained encoder')
-    #parser.add_argument('--decoder_path', type=str, default='image_captioning/models/decoder-5-3000.pkl', help='path for trained decoder')
-    #parser.add_argument('--vocab_path', type=str, default='image_captioning/data/vocab.pkl', help='path for vocabulary wrapper')
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--image', type=str, required=True, help='input image for generating caption')
+    parser.add_argument('--encoder_path', type=str, default='image_captioning/models/encoder-5-3000.pkl', help='path for trained encoder')
+    parser.add_argument('--decoder_path', type=str, default='image_captioning/models/decoder-5-3000.pkl', help='path for trained decoder')
+    parser.add_argument('--vocab_path', type=str, default='image_captioning/data/vocab.pkl', help='path for vocabulary wrapper')
     
     # Model parameters (should be same as paramters in train.py)
-    #parser.add_argument('--embed_size', type=int , default=256, help='dimension of word embedding vectors')
-    #parser.add_argument('--hidden_size', type=int , default=512, help='dimension of lstm hidden states')
-    #parser.add_argument('--num_layers', type=int , default=1, help='number of layers in lstm')
-    #args = parser.parse_args()
-    #main(args)
-
-
+    parser.add_argument('--embed_size', type=int , default=256, help='dimension of word embedding vectors')
+    parser.add_argument('--hidden_size', type=int , default=512, help='dimension of lstm hidden states')
+    parser.add_argument('--num_layers', type=int , default=1, help='number of layers in lstm')
+    args = parser.parse_args()
+    main(args)
