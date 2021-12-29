@@ -2,6 +2,7 @@ from transformers import pipeline
 from transformers import BertForSequenceClassification, BertTokenizer
 import torch
 
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 #sentiment_analysis = pipeline('sentiment-analysis')
 #print(sentiment_analysis('I love this'))
@@ -18,16 +19,34 @@ class Sentiment:
         #self.text = "This is very very bad"*200
         #self.tokenizer = BertTokenizer.from_pretrained('siebert/sentiment-roberta-large-english')
         #self.model = BertForSequenceClassification.from_pretrained('siebert/sentiment-roberta-large-english')
-        self.tokenizer = BertTokenizer.from_pretrained('ProsusAI/finbert')
-        self.model = BertForSequenceClassification.from_pretrained('ProsusAI/finbert')
-        self.tokens = self.tokenizer.encode_plus(self.text, add_special_tokens = False, return_tensors = 'pt')
+        
 
+
+        #self.tokenizer = BertTokenizer.from_pretrained('ProsusAI/finbert')
+        #self.model = BertForSequenceClassification.from_pretrained('ProsusAI/finbert')
+        #self.tokens = self.tokenizer.encode_plus(self.text, add_special_tokens = False, return_tensors = 'pt')
+
+        self.tokenizer = AutoTokenizer.from_pretrained('bert-base-cased-finetuned-mrpc')
+        self.model = AutoModelForSequenceClassification.from_pretrained('bert-base-cased-finetuned-mrpc')
+
+        self.inputs = self.tokenizer(self.text, return_tensors = 'pt', max_length = 512, truncation = True)
 
         
 
     def predict(self):
 
-        return "Positive", 0.99
+        outputs = self.model(**self.inputs).logits#['input_ids'], max_length = 250, min_length = 40, length_penalty = 2.0, num_beams = 4, early_stopping = True)
+        #print(outputs)
+        probs = torch.softmax(outputs, dim = 1).tolist()[0]
+        #print(probs.tolist())
+        pred_label = torch.argmax(torch.softmax(outputs, dim = 1)).item()
+        if pred_label == 0:
+            return "Negative", probs[pred_label]
+        else:
+            return "Positive", probs[pred_label]
+        #return self.tokenizer.decode(outputs[0])
+
+        #return "Positive", 0.99
 
     def predict1(self):
 
