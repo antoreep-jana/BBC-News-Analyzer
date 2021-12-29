@@ -4,6 +4,10 @@ import pandas as pd
 from PIL import Image
 import numpy as np 
 import torch 
+from io import BytesIO
+import requests
+
+
 
 st.title('BBC News Scraper')
 
@@ -105,15 +109,38 @@ if mode == "Simple":
 
 		from image_captioner import ImageCaption
 
+		#df = pd.read_csv('data/extracted_data.csv')
+		imgs = df[df['Title'] == news_articles]['Images']
+		#print(list(imgs)[0])
+		imgs = list(imgs)[0].replace("[", "").replace("]", "").replace("'","").split(", ")
 
+		
 
 		with st.spinner("Generating image caption..."):
 
-
-
-			
 			image = Image.open('data/img.jpg')
 			
+
+			st.image(imgs, use_column_width = True)
+			#ncols = len(imgs)
+			#cols = st.columns(ncols)
+			#print(ncols)
+			
+			#for i in range(ncols):
+				
+			#	try:
+			#		col = cols[i]
+			#		response = requests.get(imgs[i])
+			#		img = Image.open(BytesIO(response.content))
+			#		col.image(img)
+			#	except:
+			#		pass
+				#col.image(image)
+
+
+			#print(len(imgs.tolist()))
+			
+
 			text_image_radio = st.radio('Text Generator', ['Alt text', "Image Caption Model"])
 			
 			if text_image_radio == 'Alt text':
@@ -123,7 +150,7 @@ if mode == "Simple":
 				captioner = ImageCaption('data/img.jpg')
 				caption = captioner.predict()
 
-			st.image(image, caption = caption)
+			#st.image(image, caption = caption)
 				
 			
 			#st.write(caption)
