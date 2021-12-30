@@ -1,3 +1,3 @@
-image_captioning/models/decoder-5-3000.pkl
-image_captioning/models/encoder-5-3000.pkl
-image_captioning/data/vocab.pkl
+models/decoder-5-3000.pkl
+models/encoder-5-3000.pkl
+data/vocab.pkl

@@ -10,32 +10,9 @@ import urllib3
 import torch
 from torchvision import transforms
 
-class Sampler:
+from PIL import Image
 
-	def __init__(self):
-
-		pass 
-
-	def load_img(self):
-		pass 
-
-
-class VocabBuilder:
-	def __init__(self):
-
-		pass 
-
-class Model:
-
-	def __init__(self):
-
-		pass 
-
-class Resize:
-
-	def __init__(self):
-
-		pass 
+from time import sleep
 
 
 class ImageCaption:
@@ -52,6 +29,8 @@ class ImageCaption:
 
 		self.img = img 
 
+		self.img_file = self.read_img_url(self.img)
+
 	def download(self, url, file_name):
 		get_response = requests.get(url,stream=True)
 		with open(file_name, 'wb') as f:
@@ -66,10 +45,10 @@ class ImageCaption:
 		vocab_file = "https://www.dl.dropboxusercontent.com/s/7x49kzzva29z2bt/vocab.pkl?dl=0"
 		
 		#r = requests.get(vocab_file, allow_redirects = True)
-		#open('image_captioning/data/vocab.pkl').write(r.content)
+		#open('data/vocab.pkl').write(r.content)
 		
-		if not os.path.isfile('image_captioning/data/vocab.pkl'):		
-			self.download(vocab_file, 'image_captioning/data/vocab.pkl')
+		if not os.path.isfile('data/vocab.pkl'):		
+			self.download(vocab_file, 'data/vocab.pkl')
 
 	def get_models(self):
 
@@ -79,25 +58,33 @@ class ImageCaption:
 
 		url_decoder = 'https://www.dl.dropboxusercontent.com/s/fnc7qg6snrusbp2/decoder-5-3000.pkl?dl=0'
 		#decoder_file = urllib3.urlopen(url_decoder)
-		#with open('image_captioning/models/decoder-5-3000.pkl') as output:
+		#with open('models/decoder-5-3000.pkl') as output:
 		#	output.write(decoder_file.read())
 		
 
-		if not os.path.isfile('image_captioning/models/decoder-5-3000.pkl'):
-			self.download(url_decoder, 'image_captioning/models/decoder-5-3000.pkl')
+		if not os.path.isfile('models/decoder-5-3000.pkl'):
+			self.download(url_decoder, 'models/decoder-5-3000.pkl')
 
 		#r = requests.get(url_decoder, allow_redirects = True)
-		#open('image_captioning/models/decoder-5-3000.pkl').write(r.content)
+		#open('models/decoder-5-3000.pkl').write(r.content)
 
 		#encoder model
 		url_encoder = "https://www.dl.dropboxusercontent.com/s/g8t2oaxiincu48w/encoder-5-3000.pkl?dl=0"
 		#r = requests.get(url_encoder, allow_redirects = True)
-		#open('image_captioning/models/encoder-5-3000.pkl').write(r.content)
+		#open('models/encoder-5-3000.pkl').write(r.content)
 		
-		if not os.path.isfile('image_captioning/models/encoder-5-3000.pkl'):
-			self.download(url_encoder, 'image_captioning/models/encoder-5-3000.pkl')
+		if not os.path.isfile('models/encoder-5-3000.pkl'):
+			self.download(url_encoder, 'models/encoder-5-3000.pkl')
 
 
+	def read_img_url(self, img_url):
+
+		image = Image.open(requests.get(img_url, stream = True).raw).convert("RGB")
+
+		img_name = img_url.split("/")[-1]
+		image.save("tmp/" + img_name)
+		return "tmp/" + img_name
+	
 	def predict(self):
 
 
@@ -105,8 +92,17 @@ class ImageCaption:
 		#return "A sentence"
 		#return predict_main(self.img)
 
-		#output = subprocess.Popen(["python","image_captioning/sample.py","--image", "data/img.jpg"], stdout = subprocess.PIPE)
+		
 
-		#os.system('python image_captioning/sample.py --image data/img.jpg')
-		#return output.communicate()[0].decode('utf-8').replace('<start>', "").replace('<end>', '')
-		return "Image Captioning model in progress"
+		#sleep(3)
+
+		output = subprocess.Popen(["python","sample.py","--image", self.img_file], stdout = subprocess.PIPE)
+
+		#print(output)
+
+		#os.system('python sample.py --image data/img.jpg')
+		
+		return output.communicate()[0].decode('utf-8').replace('<start>', "").replace('<end>', '')
+		
+
+		#return "Image Captioning model in progress"

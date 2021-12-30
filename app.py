@@ -186,12 +186,22 @@ if mode == "Simple":
 			
 			if text_image_radio == 'Alt text':
 				caption = 'This is Alt Text caption. The one provided in the BBC articles.'
+				captions = ['caption_' + str(i + 1) for i in range(len(imgs))]
 			
 			else:
-				captioner = ImageCaption('data/img.jpg')
-				caption = captioner.predict()
 
-			captions = ['caption_' + str(i + 1) for i in range(len(imgs))]
+				st.write("Generating Captions using dummy image caption model. Attention-based caption model coming soon!")
+
+				captions = list()
+					
+				for i in imgs:
+					captioner = ImageCaption(i)
+					caption = captioner.predict()
+					#print(caption)
+					#print(captions)
+					captions.append(caption)
+
+			#print(captions)
 			st.image(imgs,caption = captions, use_column_width = True)
 			
 
