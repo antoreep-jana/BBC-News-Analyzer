@@ -14,6 +14,7 @@ from PIL import Image
 
 from time import sleep
 
+from image_captioning_model import load_model, generate_caption
 
 class ImageCaption:
 
@@ -93,16 +94,18 @@ class ImageCaption:
 		#return predict_main(self.img)
 
 		
+		encoder, decoder, vocab, transform = load_model()
+		return generate_caption(self.img_file, encoder, decoder, vocab, transform )
 
 		#sleep(3)
 
-		output = subprocess.Popen(["python","sample.py","--image", self.img_file], stdout = subprocess.PIPE)
+		#output = subprocess.Popen(["python","sample.py","--image", self.img_file], stdout = subprocess.PIPE)
 
 		#print(output)
 
 		#os.system('python sample.py --image data/img.jpg')
 		
-		return output.communicate()[0].decode('utf-8').replace('<start>', "").replace('<end>', '')
+		#return output.communicate()[0].decode('utf-8').replace('<start>', "").replace('<end>', '')
 		
 
 		#return "Image Captioning model in progress"
