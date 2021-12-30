@@ -190,7 +190,7 @@ if mode == "Simple":
 			
 			else:
 
-				st.write("Generating Captions using dummy image caption model. Attention-based caption model coming soon!")
+				st.write("Generated Captions using dummy image caption model. Attention-based caption model coming soon!")
 
 				captions = list()
 					
