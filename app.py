@@ -153,7 +153,7 @@ if mode == "Simple":
 		imgs = df[df['Title'] == news_articles]['Images']
 		#print(list(imgs)[0])
 
-		bad_img_urls = ['https://ichef.bbci.co.uk/news/976/cpsprodpb/1848/production/_98761260_onlinebanner_976x280.jpg', 'https://ichef.bbci.co.uk/news/2048/cpsprodpb/155C6/production/_120449478_bottom-3x.png', 'https://ichef.bbci.co.uk/news/2048/cpsprodpb/163F9/production/_120892119_summit_top-3x-002.png', 'https://ichef.bbci.co.uk/news/2048/cpsprodpb/102F3/production/_121319266_indonesia_v2-nc.png']
+		bad_img_urls = ['https://ichef.bbci.co.uk/news/976/cpsprodpb/1848/production/_98761260_onlinebanner_976x280.jpg', 'https://ichef.bbci.co.uk/news/2048/cpsprodpb/155C6/production/_120449478_bottom-3x.png', 'https://ichef.bbci.co.uk/news/2048/cpsprodpb/163F9/production/_120892119_summit_top-3x-002.png', 'https://ichef.bbci.co.uk/news/2048/cpsprodpb/102F3/production/_121319266_indonesia_v2-nc.png', 'https://ichef.bbci.co.uk/news/464/cpsprodpb/16C07/production/_87719139_line976.jpg']
 		imgs = list(imgs)[0].replace("[", "").replace("]", "").replace("'","").split(", ")
 
 		imgs = [i for i in imgs if i not in bad_img_urls]		
@@ -189,7 +189,7 @@ if mode == "Simple":
 				captions = ['caption_' + str(i + 1) for i in range(len(imgs))]
 			
 			else:
-
+				#print(imgs)
 				st.write("Generated Captions using dummy image caption model. Attention-based caption model coming soon!")
 
 				captions = list()

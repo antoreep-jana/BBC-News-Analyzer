@@ -16,6 +16,9 @@ from time import sleep
 
 from image_captioning_model import load_model, generate_caption
 
+
+## NEXT UP -> https://github.com/rmokady/CLIP_prefix_caption
+
 class ImageCaption:
 
 	def __init__(self, img):
