@@ -160,6 +160,8 @@ if mode == "Simple":
 		#print(imgs)
 		with st.spinner("Generating image caption..."):
 
+			st.write("Better Graph in upcoming versions!")
+
 			image = Image.open('data/img.jpg')
 			
 
