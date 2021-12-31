@@ -214,6 +214,14 @@ if mode == "Simple":
 
 		st.write("Under Making!")
 
+		#st.graphviz_chart('digraph  {\n"External COVID-19 links";\n"Idaho Coronavirus Twitter";\nMontana;\n"External United links";\n"South Dakota Health";\nUtah;\n"West Virginia Health";\nWyoming;\n"External COVID-19 links" -> "Idaho Coronavirus Twitter"  [edge="Information from", key=0];\n"External COVID-19 links" -> Montana  [edge="Information from", key=0];\n"External COVID-19 links" -> Utah  [edge="Information from", key=0];\n"External COVID-19 links" -> "West Virginia Health"  [edge="Information from", key=0];\n"External COVID-19 links" -> Wyoming  [edge="Information from", key=0];\n"External United links" -> "South Dakota Health"  [edge="Information from", key=0];\n}\n')
+		from knowledge_graph import KnowledgeGraph 
+
+
+		graph = KnowledgeGraph(text)
+		graph.generate_graph()
+		st.image("tmp/knowledge_graph.jpg")
+
 	else:
 
 		#summWords = summarize(text)

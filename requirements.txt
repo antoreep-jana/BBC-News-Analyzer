@@ -1,4 +1,5 @@
 beautifulsoup4
+nltk
 requests
 spacy>=3.0.0
 transformers
