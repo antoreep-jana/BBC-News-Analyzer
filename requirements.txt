@@ -1,5 +1,6 @@
 beautifulsoup4
 nltk
+matplotlib
 requests
 spacy>=3.0.0
 transformers
