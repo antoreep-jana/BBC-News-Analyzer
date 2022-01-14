@@ -1,5 +1,5 @@
 import spacy
-
+import streamlit as st 
 # txt = 'Apple reached an all-time high stock price of 143 dollars this January'
 
 # nlp = spacy.load('en_core_web_trf')
