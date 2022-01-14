@@ -17,7 +17,7 @@ import streamlit as st
 # https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.2.0/en_core_web_lg-3.2.0.tar.gz#egg=en_core_web_lg
 # https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.0.0/en_core_web_trf-3.0.0.tar.gz#egg=en_core_web_trf
     
-@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4, persist = True)
 def get_model():
     #nlp = spacy.load('en_core_web_trf')
     #nlp = spacy.load('en_core_web_lg')

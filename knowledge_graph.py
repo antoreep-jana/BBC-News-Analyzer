@@ -153,7 +153,7 @@ import streamlit as st
 # import gc 
 # gc.collect()
 
-@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4, persist = True)
 def get_model():
 	#nlp = spacy.load('en_core_web_lg')
 	#nlp = spacy.load("en_core_web_trf")

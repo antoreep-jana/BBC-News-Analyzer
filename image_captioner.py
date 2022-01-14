@@ -34,7 +34,7 @@ def get_vocabs():
 	if not os.path.isfile('data/vocab.pkl'):		
 		download(vocab_file, 'data/vocab.pkl')
 
-@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4, persist = True)
 def download(url, file_name):
 	get_response = requests.get(url,stream=True)
 	with open(file_name, 'wb') as f:
@@ -42,7 +42,7 @@ def download(url, file_name):
 			if chunk: # filter out keep-alive new chunks
 				f.write(chunk)
 
-@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4, persist = True)
 def get_models():
 
 	## download models 

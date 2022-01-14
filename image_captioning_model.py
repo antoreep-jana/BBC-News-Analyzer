@@ -29,7 +29,7 @@ def b64_uri_to_bytes(data_uri):
     data = data_uri.split("base64,", 1)[1]
     return base64.decodestring(bytes(data, "ascii"))
 
-@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4, persist = True)
 def load_model(
     vocab_path="data/vocab.pkl",
     encoder_path="models/encoder-5-3000.pkl",
@@ -93,7 +93,7 @@ def generate_caption(image, encoder, decoder, vocab, transform=None):
     #print(" ".join(caption))
     return " ".join(caption)
 
-@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4, persist = True)
 def download_resent():
     resnet = models.resnet152(pretrained=True)
     return resnet
