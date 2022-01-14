@@ -95,7 +95,7 @@ def generate_caption(image, encoder, decoder, vocab, transform=None):
 
 @st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4)
 def download_resent():
-    resnet = models.resnet101(pretrained=True)
+    resnet = models.resnet152(pretrained=True)
     return resnet
 
 class EncoderCNN(nn.Module):
