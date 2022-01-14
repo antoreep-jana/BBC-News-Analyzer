@@ -15,7 +15,7 @@ from PIL import Image
 from time import sleep
 
 from image_captioning_model import load_model, generate_caption
-
+import streamlit as st 
 
 ## NEXT UP -> https://github.com/rmokady/CLIP_prefix_caption
 
@@ -43,6 +43,7 @@ class ImageCaption:
 					f.write(chunk)
 
 
+	@st.cache
 	def get_vocabs(self):
 
 		#vocab file 
@@ -54,6 +55,7 @@ class ImageCaption:
 		if not os.path.isfile('data/vocab.pkl'):		
 			self.download(vocab_file, 'data/vocab.pkl')
 
+	@st.cache
 	def get_models(self):
 
 		## download models 

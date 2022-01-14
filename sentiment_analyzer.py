@@ -1,7 +1,7 @@
 from transformers import pipeline 
 from transformers import BertForSequenceClassification, BertTokenizer
 import torch
-
+import streamlit as st 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 #sentiment_analysis = pipeline('sentiment-analysis')
@@ -13,6 +13,8 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 
 class Sentiment:
+
+    @st.cache
     def __init__(self, text):
         #self.sentiment_analysis = pipeline('sentiment-analysis', model = 'siebert/sentiment-roberta-large-english')
         self.text = text
