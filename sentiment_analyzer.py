@@ -10,6 +10,9 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 # exceeds 1024 throws error 
 
 # chuck the data into part
+import gc 
+gc.collect()
+
 
 @st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
 def get_models():

@@ -12,6 +12,9 @@ import streamlit as st
 # Device configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+import gc 
+gc.collect()
+
 
 class VocabUnpickler(pickle.Unpickler):
     # https://stackoverflow.com/a/50472787/6400719
@@ -26,7 +29,7 @@ def b64_uri_to_bytes(data_uri):
     data = data_uri.split("base64,", 1)[1]
     return base64.decodestring(bytes(data, "ascii"))
 
-@st.cache(allow_output_mutation = True)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
 def load_model(
     vocab_path="data/vocab.pkl",
     encoder_path="models/encoder-5-3000.pkl",
@@ -90,7 +93,7 @@ def generate_caption(image, encoder, decoder, vocab, transform=None):
     #print(" ".join(caption))
     return " ".join(caption)
 
-@st.cache(allow_output_mutation = True)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
 def download_resent():
     resnet = models.resnet152(pretrained=True)
     return resnet

@@ -9,6 +9,9 @@ import streamlit as st
 #     print(ent.text)
 #     print(ent.label_)
 #     print('='*5)
+
+import gc 
+gc.collect()
     
 @st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
 def get_model():

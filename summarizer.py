@@ -3,6 +3,11 @@ from transformers import pipeline
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer  
 import streamlit as st 
 
+
+import gc 
+gc.collect()
+
+
 @st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
 def get_models():
 	model = AutoModelForSeq2SeqLM.from_pretrained('t5-base')
