@@ -8,7 +8,7 @@ from PIL import Image
 import base64
 import io
 
-
+import streamlit as st 
 # Device configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -26,7 +26,7 @@ def b64_uri_to_bytes(data_uri):
     data = data_uri.split("base64,", 1)[1]
     return base64.decodestring(bytes(data, "ascii"))
 
-
+@st.cache
 def load_model(
     vocab_path="data/vocab.pkl",
     encoder_path="models/encoder-5-3000.pkl",

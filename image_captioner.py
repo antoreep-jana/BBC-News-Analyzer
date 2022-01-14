@@ -19,6 +19,45 @@ import streamlit as st
 
 ## NEXT UP -> https://github.com/rmokady/CLIP_prefix_caption
 
+@st.cache
+def get_vocabs():
+
+	#vocab file 
+	vocab_file = "https://www.dl.dropboxusercontent.com/s/7x49kzzva29z2bt/vocab.pkl?dl=0"
+		
+	#r = requests.get(vocab_file, allow_redirects = True)
+	#open('data/vocab.pkl').write(r.content)
+		
+	if not os.path.isfile('data/vocab.pkl'):		
+		self.download(vocab_file, 'data/vocab.pkl')
+
+@st.cache
+def get_models():
+
+	## download models 
+	#decoder model 
+
+
+	url_decoder = 'https://www.dl.dropboxusercontent.com/s/fnc7qg6snrusbp2/decoder-5-3000.pkl?dl=0'
+	#decoder_file = urllib3.urlopen(url_decoder)
+	#with open('models/decoder-5-3000.pkl') as output:
+	#	output.write(decoder_file.read())
+		
+
+	if not os.path.isfile('models/decoder-5-3000.pkl'):
+		self.download(url_decoder, 'models/decoder-5-3000.pkl')
+	#r = requests.get(url_decoder, allow_redirects = True)
+	#open('models/decoder-5-3000.pkl').write(r.content)
+
+	#encoder model
+	url_encoder = "https://www.dl.dropboxusercontent.com/s/g8t2oaxiincu48w/encoder-5-3000.pkl?dl=0"
+	#r = requests.get(url_encoder, allow_redirects = True)
+	#open('models/encoder-5-3000.pkl').write(r.content)
+		
+	if not os.path.isfile('models/encoder-5-3000.pkl'):
+		self.download(url_encoder, 'models/encoder-5-3000.pkl')
+
+
 class ImageCaption:
 
 	def __init__(self, img):
@@ -26,10 +65,10 @@ class ImageCaption:
 		self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 		#download the models data
-		self.get_models()
+		get_models()
 
 		#download the vocab file
-		self.get_vocabs()
+		get_vocabs()
 
 		self.img = img 
 
@@ -42,45 +81,6 @@ class ImageCaption:
 				if chunk: # filter out keep-alive new chunks
 					f.write(chunk)
 
-
-	@st.cache
-	def get_vocabs(self):
-
-		#vocab file 
-		vocab_file = "https://www.dl.dropboxusercontent.com/s/7x49kzzva29z2bt/vocab.pkl?dl=0"
-		
-		#r = requests.get(vocab_file, allow_redirects = True)
-		#open('data/vocab.pkl').write(r.content)
-		
-		if not os.path.isfile('data/vocab.pkl'):		
-			self.download(vocab_file, 'data/vocab.pkl')
-
-	@st.cache
-	def get_models(self):
-
-		## download models 
-		#decoder model 
-
-
-		url_decoder = 'https://www.dl.dropboxusercontent.com/s/fnc7qg6snrusbp2/decoder-5-3000.pkl?dl=0'
-		#decoder_file = urllib3.urlopen(url_decoder)
-		#with open('models/decoder-5-3000.pkl') as output:
-		#	output.write(decoder_file.read())
-		
-
-		if not os.path.isfile('models/decoder-5-3000.pkl'):
-			self.download(url_decoder, 'models/decoder-5-3000.pkl')
-
-		#r = requests.get(url_decoder, allow_redirects = True)
-		#open('models/decoder-5-3000.pkl').write(r.content)
-
-		#encoder model
-		url_encoder = "https://www.dl.dropboxusercontent.com/s/g8t2oaxiincu48w/encoder-5-3000.pkl?dl=0"
-		#r = requests.get(url_encoder, allow_redirects = True)
-		#open('models/encoder-5-3000.pkl').write(r.content)
-		
-		if not os.path.isfile('models/encoder-5-3000.pkl'):
-			self.download(url_encoder, 'models/encoder-5-3000.pkl')
 
 
 	def read_img_url(self, img_url):

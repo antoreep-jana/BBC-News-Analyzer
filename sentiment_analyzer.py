@@ -14,7 +14,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 class Sentiment:
 
-    @st.cache
+    #@st.cache
     def __init__(self, text):
         #self.sentiment_analysis = pipeline('sentiment-analysis', model = 'siebert/sentiment-roberta-large-english')
         self.text = text
