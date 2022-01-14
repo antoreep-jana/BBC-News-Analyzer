@@ -155,8 +155,8 @@ import streamlit as st
 
 @st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
 def get_model():
-	#nlp = spacy.load('en_core_web_lg')
-	nlp = spacy.load("en_core_web_trf")
+	nlp = spacy.load('en_core_web_lg')
+	#nlp = spacy.load("en_core_web_trf")
 	return nlp
 
 class KnowledgeGraph:
