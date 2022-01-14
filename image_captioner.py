@@ -29,7 +29,15 @@ def get_vocabs():
 	#open('data/vocab.pkl').write(r.content)
 		
 	if not os.path.isfile('data/vocab.pkl'):		
-		self.download(vocab_file, 'data/vocab.pkl')
+		download(vocab_file, 'data/vocab.pkl')
+
+@st.cache
+def download(url, file_name):
+	get_response = requests.get(url,stream=True)
+	with open(file_name, 'wb') as f:
+		for chunk in get_response.iter_content(chunk_size=1024):
+			if chunk: # filter out keep-alive new chunks
+				f.write(chunk)
 
 @st.cache
 def get_models():
@@ -45,7 +53,7 @@ def get_models():
 		
 
 	if not os.path.isfile('models/decoder-5-3000.pkl'):
-		self.download(url_decoder, 'models/decoder-5-3000.pkl')
+		download(url_decoder, 'models/decoder-5-3000.pkl')
 	#r = requests.get(url_decoder, allow_redirects = True)
 	#open('models/decoder-5-3000.pkl').write(r.content)
 
@@ -55,7 +63,7 @@ def get_models():
 	#open('models/encoder-5-3000.pkl').write(r.content)
 		
 	if not os.path.isfile('models/encoder-5-3000.pkl'):
-		self.download(url_encoder, 'models/encoder-5-3000.pkl')
+		download(url_encoder, 'models/encoder-5-3000.pkl')
 
 
 class ImageCaption:
@@ -74,12 +82,6 @@ class ImageCaption:
 
 		self.img_file = self.read_img_url(self.img)
 
-	def download(self, url, file_name):
-		get_response = requests.get(url,stream=True)
-		with open(file_name, 'wb') as f:
-			for chunk in get_response.iter_content(chunk_size=1024):
-				if chunk: # filter out keep-alive new chunks
-					f.write(chunk)
 
 
 
