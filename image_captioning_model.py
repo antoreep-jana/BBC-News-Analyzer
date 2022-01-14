@@ -90,12 +90,15 @@ def generate_caption(image, encoder, decoder, vocab, transform=None):
     #print(" ".join(caption))
     return " ".join(caption)
 
+@st.cache
+def download_resent():
+    return resnet = models.resnet152(pretrained=True)
 
 class EncoderCNN(nn.Module):
     def __init__(self, embed_size):
         """Load the pretrained ResNet-152 and replace top fc layer."""
         super(EncoderCNN, self).__init__()
-        resnet = models.resnet152(pretrained=True)
+        resnet = download_resent()
         modules = list(resnet.children())[:-1]  # delete the last fc layer.
         self.resnet = nn.Sequential(*modules)
         self.linear = nn.Linear(resnet.fc.in_features, embed_size)
