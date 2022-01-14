@@ -11,7 +11,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 # chuck the data into part
 
-@st.cache(allow_output_mutation = True)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
 def get_models():
 
     tokenizer = AutoTokenizer.from_pretrained('bert-base-cased-finetuned-mrpc')
