@@ -12,10 +12,15 @@ import streamlit as st
 
 import gc 
 gc.collect()
+
+## requirements.txt
+# https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.2.0/en_core_web_lg-3.2.0.tar.gz#egg=en_core_web_lg
+
     
 @st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
 def get_model():
-    nlp = spacy.load('en_core_web_lg')
+    nlp = spacy.load('en_core_web_trf')
+    #nlp = spacy.load('en_core_web_lg')
     return nlp
 
 class NER:
