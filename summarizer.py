@@ -8,7 +8,7 @@ import streamlit as st
 # gc.collect()
 
 
-@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
+@st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 4)
 def get_models():
 	#model = AutoModelForSeq2SeqLM.from_pretrained('t5-base')
 	model = AutoModelForSeq2SeqLM.from_pretrained('facebook/bart-base')
