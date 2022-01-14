@@ -66,7 +66,6 @@ def get_models():
 		download(url_encoder, 'models/encoder-5-3000.pkl')
 
 
-	return encoder, decoder, vocab
 class ImageCaption:
 
 	def __init__(self, img):
