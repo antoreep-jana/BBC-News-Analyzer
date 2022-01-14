@@ -11,6 +11,13 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 # chuck the data into part
 
+@st.cache(allow_output_mutation = True)
+def get_models():
+
+    tokenizer = AutoTokenizer.from_pretrained('bert-base-cased-finetuned-mrpc')
+    model = AutoModelForSequenceClassification.from_pretrained('bert-base-cased-finetuned-mrpc')
+
+    return tokenizer, model
 
 class Sentiment:
 
@@ -28,9 +35,9 @@ class Sentiment:
         #self.model = BertForSequenceClassification.from_pretrained('ProsusAI/finbert')
         #self.tokens = self.tokenizer.encode_plus(self.text, add_special_tokens = False, return_tensors = 'pt')
 
-        self.tokenizer = AutoTokenizer.from_pretrained('bert-base-cased-finetuned-mrpc')
-        self.model = AutoModelForSequenceClassification.from_pretrained('bert-base-cased-finetuned-mrpc')
-
+        # self.tokenizer = AutoTokenizer.from_pretrained('bert-base-cased-finetuned-mrpc')
+        # self.model = AutoModelForSequenceClassification.from_pretrained('bert-base-cased-finetuned-mrpc')
+        self.tokenizer, self.model = get_models()
         self.inputs = self.tokenizer(self.text, return_tensors = 'pt', max_length = 512, truncation = True)
 
         
