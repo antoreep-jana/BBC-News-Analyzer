@@ -10,13 +10,19 @@ import spacy
 #     print(ent.label_)
 #     print('='*5)
     
-    
+@st.cache(allow_output_mutation = True)
+def get_model():
+    nlp = spacy.load('en_core_web_lg')
+    return nlp
 
 class NER:
     def __init__(self, txt):
         #nlp = spacy.load('en_core_web_sm')
         #nlp = spacy.load('en_core_web_md')
-        nlp = spacy.load('en_core_web_lg')
+        
+        #nlp = spacy.load('en_core_web_lg')
+        nlp = get_model()
+
         #nlp = spacy.load('en_core_web_trf')
 
         self.entities = []

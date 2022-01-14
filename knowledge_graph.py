@@ -148,6 +148,12 @@ import pandas as pd
 import matplotlib.pyplot as plot
 import nltk
 
+import streamlit as st 
+
+@st.cache(allow_output_mutation = True)
+def get_model():
+	nlp = spacy.load('en_core_web_lg')
+	return nlp
 
 class KnowledgeGraph:
 
@@ -156,7 +162,8 @@ class KnowledgeGraph:
 		self.text = text 
 
 		self.sentences = self.convert_to_sentences(self.text)
-		self.nlp = spacy.load('en_core_web_lg')
+		#self.nlp = spacy.load('en_core_web_lg')
+		self.nlp = get_model()
 
 
 	def convert_to_sentences(self, text):

@@ -1,6 +1,14 @@
 from transformers import pipeline 
 
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer  
+import streamlit as st 
+
+@st.cache(allow_output_mutation = True)
+def get_models():
+	model = AutoModelForSeq2SeqLM.from_pretrained('t5-base')
+	tokenizer = AutoTokenizer.from_pretrained('t5-base')
+	return model, tokenizer
+
 class Summarizer:
 
 	def __init__(self, text):
@@ -9,8 +17,10 @@ class Summarizer:
 
 		#self.summarizer = pipeline('summarization') 
 
-		self.model = AutoModelForSeq2SeqLM.from_pretrained('t5-base')
-		self.tokenizer = AutoTokenizer.from_pretrained('t5-base')
+		#self.model = AutoModelForSeq2SeqLM.from_pretrained('t5-base')
+		#self.tokenizer = AutoTokenizer.from_pretrained('t5-base')
+
+		self.model, self.tokenizer = get_models()
 
 		self.inputs = self.tokenizer(self.text, return_tensors = 'pt', max_length = 512, truncation = True)
 
