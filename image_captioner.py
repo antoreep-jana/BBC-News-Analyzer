@@ -19,8 +19,8 @@ import streamlit as st
 
 ## NEXT UP -> https://github.com/rmokady/CLIP_prefix_caption
 
-import gc 
-gc.collect()
+# import gc 
+# gc.collect()
 
 @st.cache
 def get_vocabs():

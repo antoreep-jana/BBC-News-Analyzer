@@ -12,8 +12,8 @@ import streamlit as st
 # Device configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-import gc 
-gc.collect()
+# import gc 
+# gc.collect()
 
 
 class VocabUnpickler(pickle.Unpickler):

@@ -10,8 +10,8 @@ import streamlit as st
 #     print(ent.label_)
 #     print('='*5)
 
-import gc 
-gc.collect()
+# import gc 
+# gc.collect()
 
 ## requirements.txt
 # https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.2.0/en_core_web_lg-3.2.0.tar.gz#egg=en_core_web_lg
