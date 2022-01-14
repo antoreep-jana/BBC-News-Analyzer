@@ -31,7 +31,7 @@ def get_vocabs():
 	if not os.path.isfile('data/vocab.pkl'):		
 		download(vocab_file, 'data/vocab.pkl')
 
-@st.cache
+@st.cache(allow_output_mutation = True)
 def download(url, file_name):
 	get_response = requests.get(url,stream=True)
 	with open(file_name, 'wb') as f:
@@ -39,7 +39,7 @@ def download(url, file_name):
 			if chunk: # filter out keep-alive new chunks
 				f.write(chunk)
 
-@st.cache
+@st.cache(allow_output_mutation = True)
 def get_models():
 
 	## download models 
@@ -66,6 +66,7 @@ def get_models():
 		download(url_encoder, 'models/encoder-5-3000.pkl')
 
 
+	return encoder, decoder, vocab
 class ImageCaption:
 
 	def __init__(self, img):
