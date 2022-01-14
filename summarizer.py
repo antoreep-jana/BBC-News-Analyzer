@@ -10,8 +10,10 @@ import streamlit as st
 
 @st.cache(allow_output_mutation = True, show_spinner = False, max_entries = 6)
 def get_models():
-	model = AutoModelForSeq2SeqLM.from_pretrained('t5-base')
-	tokenizer = AutoTokenizer.from_pretrained('t5-base')
+	#model = AutoModelForSeq2SeqLM.from_pretrained('t5-base')
+	model = AutoModelForSeq2SeqLM.from_pretrained('bart-base')
+	#tokenizer = AutoTokenizer.from_pretrained('t5-base')
+	tokenizer = AutoTokenizer.from_pretrained('bart-base')
 	return model, tokenizer
 
 class Summarizer:
