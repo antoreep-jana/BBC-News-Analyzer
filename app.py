@@ -25,12 +25,20 @@ A tool to help you analyze the news articles in seconds and deliver you the best
 
 df = pd.read_csv('data/extracted_data.csv')
 
-cols = st.columns(2)
+cols = st.columns(3)
 
 col1 = cols[0]
 data_btn = col1.button("Fetch Latest Data")
 
 col2 = cols[1]
+
+col3 = cols[2]
+extracted_data = col3.button("Use the default extracted data")
+
+
+if extracted_data:
+	df = pd.read_csv('data/extracted_data.csv')
+
 
 
 if data_btn:
