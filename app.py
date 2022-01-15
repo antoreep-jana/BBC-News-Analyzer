@@ -8,6 +8,8 @@ from io import BytesIO
 import requests
 import re
 
+url ='https://www.bbc.com/news/science-environment-56837908'
+
 
 st.title('BBC News Scraper')
 
@@ -30,6 +32,15 @@ data_btn = col1.button("Fetch Latest Data")
 
 col2 = cols[1]
 
+
+if data_btn:
+	from scraper import ClimateScraper
+	with st.spinner("Fetching latest news articles..."):
+		parser = ClimateScraper(url)
+		df = parser.extract_data_from_links()
+
+
+
 #print(['<select>']+ ['a']))
 dates_original = list(df['Date'])
 #print(dates_ori)
@@ -45,10 +56,6 @@ if date_filter != "None":
 			df = df[df['Date'] == date]
 			#print(df)
 
-
-if data_btn:
-	pass
-
 mode = st.radio("Mode", ['Simple', 'Advanced'])
 
 if mode == "Simple":
@@ -61,7 +68,19 @@ if mode == "Simple":
 
 	#print(df[df['Title'] == news_articles]['Body'][0])
 	#print(df[df['Title'] == news_articles]['Body'])
-	text_lst = df[df['Title'] == news_articles]['Body']
+
+	#print(df.head())
+	try:
+		#print("here")
+		text_lst = df[df['Title'] == news_articles]['Body'][0]
+	except:
+		#print("except here")
+		text_lst = df[df['Title'] == news_articles]['Body']
+		text_lst = text_lst.iloc[0]
+
+	
+	#print(text_lst.iloc[0])
+	#print(type(text_lst))
 	text = ""
 	for txt in text_lst:
 		text += txt 
